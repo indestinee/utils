@@ -1,4 +1,4 @@
-from base import colorful_print
-from base import colorful_str
-from base import procedure
+from eic_utils.base import colorful_print
+from eic_utils.base import colorful_str
+from eic_utils.base import procedure
 
