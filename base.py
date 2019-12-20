@@ -202,7 +202,38 @@ class ColorfulStr:
                             for k, v in sorted(data.items())])
         return self('{{{}}}'.format(output))
 
+class ColorfulPrint(ColorfulStr):
+
+    def __init__(self):
+        super().__init__()
+
+    def __call__(self, *args):
+        """Transforms (#color) to codes and prints log strings.
+
+        Usages:
+            print(colorful_str('(#r)this is a red message.(#)',
+                               'this is a normal message.',
+                               '(#b)this is a blue value {}(#).'.format(2),
+                               '(#g)this is a green dict {}.'.format({1:2})))
+
+        Valid color codes:
+            (#black):black
+            (#r), (#red): red
+            (#g), (#green): green
+            (#y), (#yellow): yellow
+            (#b), (#blue): blue
+            (#magenta): magenta
+            (#cyan): cyan
+            (#w), (#white): white
+            (#): default
+        """
+        output = (self.suffix+' ').join(map('{}'.format, args)) + self.suffix
+        output = self.multiple_replace.replace(output)
+        print(output)
+
+
 colorful_str = ColorfulStr()
+colorful_print = ColorfulPrint()
 
 
 class Procedure:
@@ -298,6 +329,7 @@ def __test():
     __colorful_str_test()
     print(get_cur_time())
     print(get_cur_time(nano_second=True))
+    colorful_print('(#y)123', get_cur_time())
 
 if __name__ == '__main__':
     __test()
