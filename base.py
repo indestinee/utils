@@ -6,7 +6,6 @@ Includes:
     colorful_str: an instance of ColorfulStr.
     Procedure: Timer for a blocks of codes.
     procedure: The same as Procedure.
-
 """
 import datetime
 import re
@@ -202,6 +201,11 @@ class ColorfulStr:
                             for k, v in sorted(data.items())])
         return self('{{{}}}'.format(output))
 
+    def color(self, *args, color='#g'):
+        if color[0] == '#':
+            color = '({})'.format(color)
+        return ['{}{}(#)'.format(color, x) for x in args]
+
 class ColorfulPrint(ColorfulStr):
 
     def __init__(self):
@@ -330,6 +334,10 @@ def __test():
     print(get_cur_time())
     print(get_cur_time(nano_second=True))
     colorful_print('(#y)123', get_cur_time())
+    
+    # usage of new updates
+    colorful_print('this is a test, x = {}, y = {}, z = {}'.format(
+        *colorful_print.color(1, 2, 3, color='(#b)')))
 
 if __name__ == '__main__':
     __test()
