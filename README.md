@@ -1,6 +1,7 @@
 # Eic_utils
 Utilities from python3 including coloful logs, procedure logs timer, basic 
 image operation and so on.
+Move to **[https://github.com/indestinee/ec_tools](https://github.com/indestinee/ec_tools)** 
 
 ## Install
 ```bash
